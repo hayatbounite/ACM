@@ -8,6 +8,8 @@
 #include <cstdlib>   // for rand()
 #include <ctime>     // for seeding random
 #include <cmath>     // for distance calculation
+#include <algorithm>  // for std::reverse in twoOpt
+
 struct Node {
     int id;
     int x;
@@ -19,6 +21,7 @@ struct Node {
 class Graph {
 private:
     std::vector<Node> nodes;
+    std::vector<int> tour;
 
 public:
     /**
@@ -54,7 +57,17 @@ public:
      * @param b Second node.
      * @return Euclidean distance between a and b.
      */
-    double distance(const Node& a, const Node& b);
+    double distance(const Node& a, const Node& b) const;
+
+    void nearestNeighborTour();
+
+    void twoOpt();
+
+    double tourLength() const;
+
+    void saveTourToFile(const std::string& filename);
+
+
 };
 
 #endif // GRAPH_HPP
